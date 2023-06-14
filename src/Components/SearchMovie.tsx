@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import InputSearch from '../Input/Input';
-
+import React from "react";
+import styled from "styled-components";
+import InputSearch from "../Input/Input";
+import CreateCard from "./CreateCard";
 
 const Section = styled.section`
   display: flex;
@@ -10,11 +10,7 @@ const Section = styled.section`
   margin: 15px 0 15px;
 `;
 
-const Content = styled.div`
-  display: flex;
-
- 
-`;
+const Content = styled.div``;
 
 const Div = styled.div`
   display: flex;
@@ -25,6 +21,12 @@ const Div = styled.div`
 `;
 
 const SearchMovie = () => {
+  const [searchValue, setSearchValue] = React.useState("");
+
+  function handleSearchValue(value) {
+    setSearchValue(value);
+  }
+
   return (
     <Section className="container-content">
       <Content className="content">
@@ -34,12 +36,17 @@ const SearchMovie = () => {
             label="Pesquise algum filme:"
             id="search"
             autoComplete="off"
+            required
+            onSearch={handleSearchValue} // Adicione essa prop para atualizar o valor de pesquisa
           />
         </Div>
-        <Div className="Container-movies"></Div>
+        {searchValue && ( // Renderize o CreateCard somente se houver um valor de pesquisa
+          <Div className="Container-movies">
+            <CreateCard searchValue={searchValue} />
+          </Div>
+        )}
       </Content>
     </Section>
   );
 };
-
 export default SearchMovie;

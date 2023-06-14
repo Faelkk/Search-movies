@@ -1,20 +1,17 @@
-import React from "react";
 import styled from "styled-components";
-
 
 const Header = styled.header`
   display: flex;
-  background:#000;
-  justify-content:center;
-  padding:10px 0 10px
+  background: #000;
+  justify-content: center;
+  padding: 10px 0 10px;
 `;
 
 const H1 = styled.h1`
-color:#fff;
-font-family: 'IBM Plex Mono', monospace;
-font-size: 1.2rem
-`
-
+  color: #fff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.2rem;
+`;
 
 const HeaderApp = () => {
   return (
