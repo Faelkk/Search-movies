@@ -19,7 +19,6 @@ const Form = styled.form`
     flex-direction: column;
   }
 `;
-
 const Label = styled.label`
   font-size: 1.2rem;
   font-family: Helvetica, Arial;
