@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import imgLoading from "../assets/Reload-1s-200px.gif";
 
@@ -10,6 +9,7 @@ const ContainerLoading = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const Loading = () => {
   return (
     <ContainerLoading>

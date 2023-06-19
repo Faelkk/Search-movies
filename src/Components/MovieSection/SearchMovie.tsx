@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import InputSearch from "../Input/Input";
-import CreateCard from "./CreateCard";
+import InputSearch from "../../Input/Input";
+import CreateCard from "../Card/CreateCard";
 
 const Section = styled.section`
   display: flex;

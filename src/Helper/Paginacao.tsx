@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { propsPaginate } from "../Types/types";
 const Btn = styled.button`
   background: #0c4369;
   color: #fff;
@@ -18,7 +19,12 @@ const ContainerButtons = styled.div`
   justify-content: center;
 `;
 
-const Paginacao = ({ moviesPerPage, totalMovies, paginate, currentPage }) => {
+const Paginacao = ({
+  moviesPerPage,
+  totalMovies,
+  paginate,
+  currentPage,
+}: propsPaginate) => {
   const pageNumbers = Math.ceil(totalMovies / moviesPerPage);
 
   return (

@@ -1,6 +1,6 @@
-import HeaderApp from "./Components/Header.tsx";
-import SearchMovie from "./Components/SearchMovie.tsx";
-import FooterSearch from "./Components/Footer.tsx";
+import HeaderApp from "./Components/Header/Header.tsx";
+import SearchMovie from "./Components/MovieSection/SearchMovie.tsx";
+import FooterSearch from "./Components/Footer/Footer.tsx";
 import styled from "styled-components";
 
 const Container = styled.div`
