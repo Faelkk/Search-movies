@@ -65,10 +65,8 @@ const InputSearch = (props: InputSearchProps) => {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (typeof props.onSearch === "function") {
-      // Verifique se onSearch é uma função antes de chamá-la
-      props.onSearch(searchValue); // Chame a função onSearch com o valor de pesquisa
-    }
+    props.onSearch(searchValue);
+    setSearch("");
   }
 
   return (

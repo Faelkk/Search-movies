@@ -21,6 +21,7 @@ const ContainerInput = styled.div`
   gap: 1rem;
   justify-content: center;
   margin-bottom: 5%;
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -43,10 +44,10 @@ const SearchMovie = () => {
             id="search"
             autoComplete="off"
             required
-            onSearch={handleSearchValue} // Adicione essa prop para atualizar o valor de pesquisa
+            onSearch={handleSearchValue}
           />
         </ContainerInput>
-        {searchValue && ( // Renderize o CreateCard somente se houver um valor de pesquisa
+        {searchValue && (
           <ContainerMovies className="Container-movies">
             <CreateCard searchValue={searchValue} />
           </ContainerMovies>
