@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function useMove() {
-  const [movieId, setMovieId] = React.useState("");
-  const [eachMovie, setMovie] = React.useState([]);
+  const [movieId, setMovieId] = useState("");
+  const [eachMovie, setMovie] = useState([]);
 
   useEffect(() => {
     const fetchMovie = async () => {

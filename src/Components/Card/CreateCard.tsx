@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "../../Helper/Loading";
 import useMove from "../../Hooks/FetchMovie";
 import Paginacao from "../../Helper/Paginacao";
 import useFetchMoviesAll from "../../Hooks/FetchMoviesAll";
 import * as s from "./Style";
-import { InputResult, Movie } from "../../Types/types";
+import * as m from "../Modal/style";
+import { InputResult, Movie, MoviesInformation } from "../../Types/types";
+import closeImg from "../../assets/close_FILL0_wght400_GRAD0_opsz48.svg";
 
 const CreateCard: React.FC<InputResult> = ({ searchValue }) => {
+  const [modalEstaAberto, setModalEstaAberto] = useState(false);
   const moviesAll = useFetchMoviesAll(searchValue);
   const [page, setPage] = useState(1);
-  const [eachMovie, setMovieId] = useMove();
+  const [eachMovie, setMovieId]: [MoviesInformation] = useMove();
 
   const paginate = (pageNumber: number) => setPage(pageNumber);
   const TotalMovies = 9;
@@ -23,7 +26,14 @@ const CreateCard: React.FC<InputResult> = ({ searchValue }) => {
   } else if (currentMovies.length === 2) {
     columns = 2;
   }
+  function handleClick({ currentTarget }) {
+    setMovieId(currentTarget.id);
+    setModalEstaAberto(true);
+  }
 
+  useEffect(() => {
+    console.log(eachMovie);
+  }, [eachMovie]);
   return (
     <>
       {moviesAll.length === 0 ? (
@@ -36,12 +46,10 @@ const CreateCard: React.FC<InputResult> = ({ searchValue }) => {
                 key={movie.imdbID}
                 className="card"
                 id={movie.imdbID}
-                onClick={({ currentTarget }) => {
-                  setMovieId(currentTarget.id);
-                }}
+                onClick={handleClick}
               >
                 <s.ImgCard
-                  src={movie.Poster}
+                  src={movie.Poster.replace("300", "1900")}
                   alt={movie.Title}
                   coluns={columns === 1 ? "true" : undefined}
                 />
@@ -59,6 +67,38 @@ const CreateCard: React.FC<InputResult> = ({ searchValue }) => {
             currentPage={page}
           />
         </>
+      )}
+      {modalEstaAberto && (
+        <m.ContainerModal>
+          <m.ModalWindow>
+            <m.ContainerImg>
+              <m.ImgModal
+                src={
+                  eachMovie.Poster
+                    ? eachMovie.Poster.replace("300", "1900")
+                    : ""
+                }
+              />{" "}
+            </m.ContainerImg>
+            <m.ContainerInformations>
+              <m.TitleModal>{eachMovie.Title}</m.TitleModal>
+              <m.LancamentoSpan>Lançamento:{eachMovie.Year}</m.LancamentoSpan>
+              <m.RatingMovie>Avaliação:{eachMovie.imdbRating}</m.RatingMovie>
+              <m.ReceitaModal>
+                Receita:
+                {eachMovie.BoxOffice
+                  ? eachMovie.BoxOffice.replace("$", "")
+                  : ""}
+                R$
+              </m.ReceitaModal>
+              <m.DuracaoModal>Duração:{eachMovie.Runtime}</m.DuracaoModal>
+            </m.ContainerInformations>
+            <m.CloseIcon
+              src={closeImg}
+              onClick={() => setModalEstaAberto(false)}
+            />
+          </m.ModalWindow>
+        </m.ContainerModal>
       )}
     </>
   );
