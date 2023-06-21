@@ -4,7 +4,7 @@ const Header = styled.header`
   display: flex;
   background: #000;
   justify-content: center;
-  padding: 10px 0 10px;
+  padding: 5px;
 `;
 
 const H1 = styled.h1`

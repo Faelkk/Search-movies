@@ -16,7 +16,9 @@ const Btn = styled.button`
 
 const ContainerButtons = styled.div`
   display: flex;
+  z-index: 2;
   justify-content: center;
+  padding-bottom: 5vh;
 `;
 
 const Paginacao = ({

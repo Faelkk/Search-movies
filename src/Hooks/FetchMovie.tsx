@@ -1,25 +1,61 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
-function useMove() {
-  const [movieId, setMovieId] = useState("");
-  const [eachMovie, setMovie] = useState([]);
+function useSearchMovies() {
+  const [isLoadingBySearch, setLoading] = useState(false);
+  const [isErrorBySearch, setErrorSearch] = useState(false);
+  const [moviesBySearch, setMoviesSearch] = useState([]);
 
-  useEffect(() => {
-    const fetchMovie = async () => {
-      const response = await fetch(
-        `https://www.omdbapi.com/?i=${movieId}&apikey=4a3b711b`
-      );
+  const searchMovies = async (searchValue) => {
+    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`;
+    try {
+      setLoading(true);
+      setErrorSearch(false);
+      const response = await fetch(url);
+
       const result = await response.json();
-      if (response.ok) {
-        setMovie(result);
+      if (result.Response !== "False") {
+        setMoviesSearch(result.Search || []);
+      } else {
+        throw new Error("Erro ao buscar filmes");
       }
-    };
-    if (movieId !== "") {
-      fetchMovie();
+    } catch (error) {
+      setErrorSearch(true);
+      console.log("Erro ao buscar filmes:", error);
+    } finally {
+      setLoading(false);
     }
-  }, [movieId]);
+  };
 
-  return [eachMovie, setMovieId];
+  return [moviesBySearch, searchMovies, isLoadingBySearch, isErrorBySearch];
 }
 
-export default useMove;
+export default useSearchMovies;
+function useGetMovieById() {
+  const [isLoadingById, setLoading] = useState(false);
+  const [isErrorById, setErrorID] = useState(false);
+  const [movieById, setMovieId] = useState(null);
+
+  const getMovieById = async (id) => {
+    const url = `https://www.omdbapi.com/?i=${id}&apikey=4a3b711b`;
+    try {
+      setLoading(true);
+      setErrorID(false);
+      const response = await fetch(url);
+      if (response.ok) {
+        const result = await response.json();
+        setMovieId(result);
+      } else {
+        throw new Error("Erro ao buscar o filme");
+      }
+    } catch (error) {
+      console.log("Erro ao buscar o filme");
+      setErrorID(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return [movieById, getMovieById, isLoadingById, isErrorById];
+}
+
+export { useSearchMovies, useGetMovieById };

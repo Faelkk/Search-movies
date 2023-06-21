@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 img {
   display: block;
@@ -26,4 +27,7 @@ input {
 }
 #root {
   height: 100%;
+}
+.active {
+  position: relative !important;
 }

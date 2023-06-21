@@ -1,24 +1,46 @@
-import React, { useEffect, useState } from "react";
-import Loading from "../../Helper/Loading";
-import useMove from "../../Hooks/FetchMovie";
+import React, { useState, useEffect } from "react";
+import { useSearchMovies, useGetMovieById } from "../../Hooks/FetchMovie";
 import Paginacao from "../../Helper/Paginacao";
-import useFetchMoviesAll from "../../Hooks/FetchMoviesAll";
-import * as s from "./Style";
-import * as m from "../Modal/style";
-import { InputResult, Movie, MoviesInformation } from "../../Types/types";
+
+import ImageCard, {
+  ContainerCards,
+  Card,
+  AboutCard,
+  NameMovie,
+  Year,
+} from "./Style";
+import {
+  ContainerModal,
+  ModalWindow,
+  ContainerImg,
+  ImgModal,
+  ContainerInformations,
+  TitleModal,
+  LancamentoSpan,
+  RatingMovie,
+  ReceitaModal,
+  DuracaoModal,
+  CloseIcon,
+} from "../Modal/style";
 import closeImg from "../../assets/close_FILL0_wght400_GRAD0_opsz48.svg";
+import { Loading } from "../../Helper/Loading/Loading";
+import ErrorCard from "../../Helper/Error/Error";
 
-const CreateCard: React.FC<InputResult> = ({ searchValue }) => {
+const CardCreator = ({ searchValue }) => {
   const [modalEstaAberto, setModalEstaAberto] = useState(false);
-  const moviesAll = useFetchMoviesAll(searchValue);
   const [page, setPage] = useState(1);
-  const [eachMovie, setMovieId]: [MoviesInformation] = useMove();
 
-  const paginate = (pageNumber: number) => setPage(pageNumber);
-  const TotalMovies = 9;
-  const NumeroStart = (page - 1) * TotalMovies;
-  const NumeroFinal = page * TotalMovies;
-  const currentMovies = moviesAll.slice(NumeroStart, NumeroFinal);
+  const [moviesBySearch, searchMovies, isLoadingBySearch, isErrorBySearch] =
+    useSearchMovies();
+
+  const [movieById, getMovieById, isLoadingById, isErrorById] =
+    useGetMovieById();
+
+  const paginate = (pageNumber) => setPage(pageNumber);
+  const totalMovies = 9;
+  const numeroStart = (page - 1) * totalMovies;
+  const numeroFinal = page * totalMovies;
+  const currentMovies = moviesBySearch.slice(numeroStart, numeroFinal);
 
   let columns = 3;
   if (currentMovies.length === 1) {
@@ -26,82 +48,96 @@ const CreateCard: React.FC<InputResult> = ({ searchValue }) => {
   } else if (currentMovies.length === 2) {
     columns = 2;
   }
-  function handleClick({ currentTarget }) {
-    setMovieId(currentTarget.id);
+
+  const handleSearch = (searchValue) => {
+    searchMovies(searchValue);
+  };
+
+  const handleClick = (id) => {
     setModalEstaAberto(true);
-  }
+    getMovieById(id);
+  };
 
   useEffect(() => {
-    console.log(eachMovie);
-  }, [eachMovie]);
+    handleSearch(searchValue);
+  }, [searchValue]);
+
+  if (isErrorBySearch) return <ErrorCard />;
+  if (isLoadingBySearch) return <Loading />;
   return (
     <>
-      {moviesAll.length === 0 ? (
+      <>
+        <ContainerCards columns={columns}>
+          {currentMovies.map((movie) => (
+            <Card
+              key={movie.imdbID}
+              className="card"
+              id={movie.imdbID}
+              onClick={() => handleClick(movie.imdbID)}
+            >
+              <ImageCard
+                src={movie.Poster.replace("300", "1900")}
+                alt={movie.Title}
+                coluns={columns === 1 ? "true" : undefined}
+              />
+              <AboutCard>
+                <NameMovie>{movie.Title}</NameMovie>
+                <Year>{movie.Year}</Year>
+              </AboutCard>
+            </Card>
+          ))}
+        </ContainerCards>
+        <Paginacao
+          moviesPerPage={totalMovies}
+          totalMovies={moviesBySearch.length}
+          paginate={paginate}
+          currentPage={page}
+        />
+      </>
+      {modalEstaAberto && isLoadingById ? (
         <Loading />
-      ) : (
-        <>
-          <s.ContainerCards columns={columns}>
-            {currentMovies.map((movie: Movie) => (
-              <s.Card
-                key={movie.imdbID}
-                className="card"
-                id={movie.imdbID}
-                onClick={handleClick}
-              >
-                <s.ImgCard
-                  src={movie.Poster.replace("300", "1900")}
-                  alt={movie.Title}
-                  coluns={columns === 1 ? "true" : undefined}
-                />
-                <s.AboutCard>
-                  <s.NameMovie>{movie.Title}</s.NameMovie>
-                  <s.Year>{movie.Year}</s.Year>
-                </s.AboutCard>
-              </s.Card>
-            ))}
-          </s.ContainerCards>
-          <Paginacao
-            moviesPerPage={TotalMovies}
-            totalMovies={moviesAll.length}
-            paginate={paginate}
-            currentPage={page}
-          />
-        </>
-      )}
-      {modalEstaAberto && (
-        <m.ContainerModal>
-          <m.ModalWindow>
-            <m.ContainerImg>
-              <m.ImgModal
+      ) : modalEstaAberto ? (
+        <ContainerModal>
+          <ModalWindow>
+            <ContainerImg>
+              <ImgModal
                 src={
-                  eachMovie.Poster
-                    ? eachMovie.Poster.replace("300", "1900")
+                  movieById && movieById.Poster
+                    ? movieById.Poster.replace("300", "1900")
                     : ""
                 }
-              />{" "}
-            </m.ContainerImg>
-            <m.ContainerInformations>
-              <m.TitleModal>{eachMovie.Title}</m.TitleModal>
-              <m.LancamentoSpan>Lançamento:{eachMovie.Year}</m.LancamentoSpan>
-              <m.RatingMovie>Avaliação:{eachMovie.imdbRating}</m.RatingMovie>
-              <m.ReceitaModal>
-                Receita:
-                {eachMovie.BoxOffice
-                  ? eachMovie.BoxOffice.replace("$", "")
-                  : ""}
+              />
+            </ContainerImg>
+            <ContainerInformations>
+              <TitleModal>{movieById && movieById.Title}</TitleModal>
+              <LancamentoSpan>
+                Lançamento: {movieById && movieById.Released}
+              </LancamentoSpan>
+              <RatingMovie>
+                Avaliação: {movieById && movieById.imdbRating}
+              </RatingMovie>
+              <ReceitaModal>
+                Receita:{" "}
+                {movieById && movieById.BoxOffice
+                  ? movieById.BoxOffice.replace("$", "")
+                  : ""}{" "}
                 R$
-              </m.ReceitaModal>
-              <m.DuracaoModal>Duração:{eachMovie.Runtime}</m.DuracaoModal>
-            </m.ContainerInformations>
-            <m.CloseIcon
+              </ReceitaModal>
+              <DuracaoModal>
+                Duração: {movieById && movieById.Runtime}
+              </DuracaoModal>
+            </ContainerInformations>
+            <CloseIcon
               src={closeImg}
-              onClick={() => setModalEstaAberto(false)}
+              onClick={() => {
+                setModalEstaAberto(false);
+              }}
             />
-          </m.ModalWindow>
-        </m.ContainerModal>
-      )}
+          </ModalWindow>
+        </ContainerModal>
+      ) : null}{" "}
     </>
   );
 };
 
-export default CreateCard;
+export default CardCreator;

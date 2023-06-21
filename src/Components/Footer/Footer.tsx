@@ -4,8 +4,8 @@ const Footer = styled.footer`
   text-align: center;
   width: 100%;
   background: #000;
-  padding: 10px 0 10px;
-
+  padding: 5px 0 5px 0px;
+  position: fixed;
   bottom: 0;
 `;
 const Span = styled.span`
