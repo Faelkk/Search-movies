@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import InputSearch from "../../Input/Input";
-import CreateCard from "../Card/CreateCard";
+import Movies from "../Card/Movies";
 
 const Section = styled.section`
   display: flex;
@@ -49,7 +49,7 @@ const SearchMovie = () => {
         </ContainerInput>
         {searchValue && (
           <ContainerMovies className="Container-movies">
-            <CreateCard searchValue={searchValue} />
+            <Movies searchValue={searchValue} />
           </ContainerMovies>
         )}
       </Content>

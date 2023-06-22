@@ -1,4 +1,4 @@
-export interface Movie {
+export interface MovieSearch {
   imdbID: string;
   Poster: string;
   Title: string;
@@ -15,35 +15,28 @@ export interface propsPaginate {
   currentPage: number;
 }
 
-export interface MoviesInformation {
-  Title: string;
-  Year: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Plot: string;
-  Language: string;
-  Country: string;
-  Awards: string;
-  Poster: string;
-  Ratings: Rating[];
-  Metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  imdbID: string;
-  Type: string;
-  DVD: string;
-  BoxOffice: string;
-  Production: string;
-  Website: string;
-  Response: string;
-}
-
 export interface Rating {
   Source: string;
   Value: string;
+}
+
+export interface PropsCard {
+  searchValue: string;
+}
+
+export interface MovieSearchId {
+  imdbID: string;
+  Poster: string;
+  Title: string;
+  Year: string;
+  Released: string;
+  imdbRating: string;
+  BoxOffice: string;
+  Runtime: string;
+}
+
+export interface TypeAlt {
+  alt: string;
+  src: string;
+  colums: string | undefined;
 }

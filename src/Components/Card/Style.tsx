@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { TypeAlt } from "../../Types/types";
 
 export const ContainerCards = styled.div<{ columns: number }>`
   display: grid;
@@ -81,18 +82,19 @@ const Skeleton = styled.div`
   }
 `;
 
-const ImageCard = ({ alt, ...props }) => {
+const ImageCard: React.FC<TypeAlt> = ({ alt, src, ...props }) => {
   const [skeleton, setSkeleton] = React.useState(true);
 
-  function handleLoad({ target }) {
+  function handleLoad(event: React.ChangeEvent<HTMLImageElement>) {
+    const target = event.target;
     setSkeleton(false);
-    target.style.opacity = 1;
+    target.style.opacity = "1";
   }
 
   return (
     <Wrapper>
       {skeleton && <Skeleton></Skeleton>}
-      <ImgCard onLoad={handleLoad} alt={alt} {...props} />
+      <ImgCard onLoad={handleLoad} alt={alt} src={src} {...props} />
     </Wrapper>
   );
 };

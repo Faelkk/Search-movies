@@ -12,6 +12,9 @@ export const ContainerModal = styled.div`
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
   font-family: "Roboto", sans-serif;
+  @media (max-width: 768px) {
+    align-items: start;
+  }
 `;
 export const ModalWindow = styled.div`
   display: flex;
@@ -21,6 +24,11 @@ export const ModalWindow = styled.div`
   background: #f4eded;
   width: 700px;
   position: relative;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    width: auto;
+    margin-top: 1rem;
+  }
 `;
 export const ContainerImg = styled.div``;
 export const ContainerInformations = styled.div`
@@ -32,13 +40,35 @@ export const ImgModal = styled.img`
   width: 250px;
 `;
 export const TitleModal = styled.h2`
+  width: 30ch;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    width: 30ch;
+    font-weight: bold;
+  }
 `;
-export const LancamentoSpan = styled.span``;
-export const RatingMovie = styled.span``;
-export const ReceitaModal = styled.span``;
-export const DuracaoModal = styled.span``;
+export const LancamentoSpan = styled.span`
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
+export const RatingMovie = styled.span`
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
+export const ReceitaModal = styled.span`
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
+export const DuracaoModal = styled.span`
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
 export const CloseIcon = styled.img`
   position: absolute;
   top: 0;

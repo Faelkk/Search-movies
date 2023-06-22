@@ -5,7 +5,7 @@ function useSearchMovies() {
   const [isErrorBySearch, setErrorSearch] = useState(false);
   const [moviesBySearch, setMoviesSearch] = useState([]);
 
-  const searchMovies = async (searchValue) => {
+  const searchMovies = async (searchValue: string) => {
     const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`;
     try {
       setLoading(true);
@@ -35,7 +35,7 @@ function useGetMovieById() {
   const [isErrorById, setErrorID] = useState(false);
   const [movieById, setMovieId] = useState(null);
 
-  const getMovieById = async (id) => {
+  const getMovieById = async (id: string) => {
     const url = `https://www.omdbapi.com/?i=${id}&apikey=4a3b711b`;
     try {
       setLoading(true);
