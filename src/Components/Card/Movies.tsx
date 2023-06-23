@@ -54,27 +54,30 @@ const Movies: React.FC<PropsCard> = ({ searchValue }) => {
 
   if (isErrorBySearch) return <ErrorCard />;
   if (isLoadingBySearch) return <Loading />;
+  if (isLoadingById) return <Loading />;
   return (
     <>
-      <ContainerCards columns={columns}>
-        {currentMovies.map((movie: MovieSearch) => (
-          <CardComponent
-            key={movie.imdbID}
-            movie={movie}
-            columns={columns}
-            handleClick={handleClick}
-          />
-        ))}
-      </ContainerCards>
-      <Paginacao
-        moviesPerPage={totalMovies}
-        totalMovies={Array.isArray(moviesBySearch) ? moviesBySearch.length : 0}
-        paginate={paginate}
-        currentPage={page}
-      />
-      {modalEstaAberto && isLoadingById ? (
-        <Loading />
-      ) : modalEstaAberto ? (
+      <>
+        <ContainerCards columns={columns}>
+          {currentMovies.map((movie: MovieSearch) => (
+            <CardComponent
+              key={movie.imdbID}
+              movie={movie}
+              columns={columns}
+              handleClick={handleClick}
+            />
+          ))}
+        </ContainerCards>
+        <Paginacao
+          moviesPerPage={totalMovies}
+          totalMovies={
+            Array.isArray(moviesBySearch) ? moviesBySearch.length : 0
+          }
+          paginate={paginate}
+          currentPage={page}
+        />
+      </>
+      {modalEstaAberto ? (
         <Modal movieById={movieById} closeModal={closeModal} />
       ) : null}
     </>
