@@ -17,7 +17,7 @@ const Card = ({ movie }: CardProps) => {
         />
 
         <TitleCard>{movie.Title}</TitleCard>
-        <Link to={`/${movie.imdbID}`} className="">
+        <Link to={`/${movie.imdbID}`} className="linkCard">
           <BtnModal>Ver detalhes</BtnModal>
         </Link>
       </Container>
