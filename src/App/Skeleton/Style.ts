@@ -2,9 +2,14 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
+  width: 200px;
+  height: 300px;
+  border-radius: 4px;
 `;
 
 export const Img = styled.img`
+  width: 200px;
+  height: 300px;
   display: block;
   max-width: 100%;
   grid-area: 1/1;

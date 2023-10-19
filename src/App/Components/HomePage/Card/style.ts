@@ -16,11 +16,7 @@ export const Container = styled.div`
     width: 100%;
   }
 `;
-export const CardIcon = styled.img`
-  width: 200px;
-  height: 300px;
-  border-radius: 4px;
-`;
+
 export const TitleCard = styled.h2`
   font-size: 1.2rem;
   margin-top: 1rem;
