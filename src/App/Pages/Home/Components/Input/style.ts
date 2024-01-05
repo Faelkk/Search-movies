@@ -18,7 +18,7 @@ export const Form = styled.form`
     width: 90%;
   }
 `;
-export const Input = styled.input`
+export const InputSearch = styled.input`
   border: none;
   width: 100%;
 `;

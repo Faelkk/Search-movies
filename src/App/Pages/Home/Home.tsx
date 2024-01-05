@@ -1,10 +1,10 @@
-import MoviesNoContent from "../MoviesNoContent/MoviesNoContent";
-
-import MoviesContent from "../MoviesContent/MoviesContent";
 import { useState } from "react";
-import InputSearch from "../InputSearch/InputSearch";
 
-const Movies = () => {
+import MoviesContent from "./Components/MoviesContent/MoviesContent";
+import MoviesNoContent from "./Components/MoviesNoContent/MoviesNoContent";
+import Input from "./Components/Input/Input";
+
+const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [isInputDisabled, setInputDisabled] = useState(false);
 
@@ -14,7 +14,7 @@ const Movies = () => {
 
   return (
     <>
-      <InputSearch onSubmit={handleSubmit} isInputDisabled={isInputDisabled} />
+      <Input onSubmit={handleSubmit} isInputDisabled={isInputDisabled} />
       {inputValue ? (
         <MoviesContent
           searchValue={inputValue}
@@ -27,4 +27,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Home;

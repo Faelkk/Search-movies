@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { MoviesCenter, ContainerGrid } from "./style";
-import { Loading } from "../../Loader/Loading";
 
 import Card from "../Card/Card";
 import MovieError from "../Error/MovieError";
-import useFetchMoviesBySearch from "../../../../Hooks/useFetchMovies";
+import useFetchMoviesBySearch from "../../../../../Hooks/useFetchMovies";
+import { Loading } from "../../../../Components/Loader/Loading";
 
 interface MoviesContentProps {
   searchValue: string;

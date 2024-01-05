@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { ButtonSubmit, Container, Form, Input } from "./style";
+import { ButtonSubmit, Container, Form, InputSearch } from "./style";
 
-import submitIcon from "../../../../assets/search_FILL0_wght400_GRAD0_opsz24.svg";
+import submitIcon from "../../../../../assets/search_FILL0_wght400_GRAD0_opsz24.svg";
 
 interface inputProps {
   onSubmit: (value: string) => void;
   isInputDisabled: boolean;
 }
 
-const InputSearch = ({ isInputDisabled, onSubmit }: inputProps) => {
+const Input = ({ isInputDisabled, onSubmit }: inputProps) => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +24,7 @@ const InputSearch = ({ isInputDisabled, onSubmit }: inputProps) => {
   return (
     <Container>
       <Form onSubmit={handleSubmitForm}>
-        <Input
+        <InputSearch
           type="text"
           placeholder="Pesquise um filme"
           value={searchValue}
@@ -39,4 +39,4 @@ const InputSearch = ({ isInputDisabled, onSubmit }: inputProps) => {
   );
 };
 
-export default InputSearch;
+export default Input;

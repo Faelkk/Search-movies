@@ -1,6 +1,6 @@
 import { TitleError, ImgError, Container } from "./style";
 
-import iconError from "../../../../assets/404 Error-rafiki.svg";
+import iconError from "../../../../../assets/404 Error-rafiki.svg";
 
 const MovieError = () => {
   return (

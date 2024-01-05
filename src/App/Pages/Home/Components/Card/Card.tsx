@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { MovieSearch } from "../../../../Types/types";
-import SkeletonImage from "../../../Skeleton/Skeleton";
 import { Container, TitleCard, BtnModal } from "./style";
+import { MovieSearch } from "../../../../../Types/types";
+import SkeletonImage from "../../../../Skeleton/Skeleton";
 
 interface CardProps {
   movie: MovieSearch;
