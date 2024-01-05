@@ -56,7 +56,7 @@ const MoviesContent = () => {
                 />
 
                 <TitleCard>{movie.Title}</TitleCard>
-                <BtnModal>Ver detalhes</BtnModal>
+                <BtnModal>See details</BtnModal>
               </Container>
             ))}
           </ContainerGrid>

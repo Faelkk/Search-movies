@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useInputContext } from "../../../../../../../App/Context/useInputContext";
 
 
 function useInput() {
     const [inputSearchValue, setInputSearchValue] = useState("");
     const { isInputDisabled, handleSubmit } = useInputContext();
-  
+    const inputRef = useRef<HTMLInputElement>(null);
+
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputSearchValue(e.target.value);
     };
@@ -16,6 +18,10 @@ function useInput() {
       setInputSearchValue("");
     };
 
-    return {inputSearchValue,setInputSearchValue,isInputDisabled,handleInputChange,handleSubmitForm}
+    const handleFormClick = () => {
+      if (inputRef.current) inputRef.current.focus();
+    };
+
+    return {inputRef,inputSearchValue,setInputSearchValue,isInputDisabled,handleInputChange,handleSubmitForm,handleFormClick}
 }
 export default useInput

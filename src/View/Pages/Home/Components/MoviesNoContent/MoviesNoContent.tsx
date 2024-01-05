@@ -6,7 +6,7 @@ import searchIconHome from "../../../../../assets/Web search-pana.svg";
 const MoviesNoContent = () => {
   return (
     <Container>
-      <TitleHome>Pesquise algum filme</TitleHome>
+      <TitleHome>Search for a movie or series.</TitleHome>
 
       <SkeletonImage
         src={searchIconHome}

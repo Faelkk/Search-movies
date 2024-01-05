@@ -6,21 +6,24 @@ import useInput from "./useInput";
 
 const Input = () => {
   const {
+    inputRef,
     inputSearchValue,
     isInputDisabled,
     handleInputChange,
     handleSubmitForm,
+    handleFormClick,
   } = useInput();
 
   return (
-    <Form onSubmit={handleSubmitForm}>
+    <Form onClick={handleFormClick} onSubmit={handleSubmitForm}>
       <InputSearch
         type="text"
-        placeholder="Pesquise um filme"
+        placeholder="Search for a movie or series."
         required
         value={inputSearchValue}
         onChange={handleInputChange}
         disabled={isInputDisabled}
+        ref={inputRef}
       />
       <ButtonSubmit type="submit">
         <img src={submitIcon} alt="Submit" />
