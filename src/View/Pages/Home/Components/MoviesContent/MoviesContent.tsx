@@ -1,15 +1,29 @@
 import { useEffect } from "react";
-import { MoviesCenter, ContainerGrid } from "./style";
+import {
+  MoviesCenter,
+  ContainerGrid,
+  Container,
+  TitleCard,
+  BtnModal,
+} from "./style";
 
-import Card from "../Card/Card";
 import MovieError from "../Error/MovieError";
-import { useInputContext } from "../../../../../App/Context/useInputContext";
-import useFetchMoviesBySearch from "../../../../../App/Hooks/useFetchMovies";
-import Loader from "../../../../../App/Components/Helpers/Loading/Loader";
+import Loader from "../../../../Components/Helpers/Loading/Loader";
+import SkeletonImage from "../../../../Components/Skeleton/Skeleton";
+import Modal from "../../../../Components/Modal/Modal";
+import useMoviesContent from "./useMoviesContent";
 
 const MoviesContent = () => {
-  const { inputValue, setInputDisabled } = useInputContext();
-  const { moviesBySearch, loading, error } = useFetchMoviesBySearch(inputValue);
+  const {
+    moviesBySearch,
+    error,
+    loading,
+    movieByIdClicked,
+    isModalMovieOpen,
+    onClickCard,
+    setInputDisabled,
+    handleClickCloseModal,
+  } = useMoviesContent();
 
   useEffect(() => {
     if (loading) {
@@ -31,10 +45,29 @@ const MoviesContent = () => {
         <MoviesCenter>
           <ContainerGrid>
             {moviesBySearch.map((movie) => (
-              <Card key={movie.imdbID} movie={movie} />
+              <Container
+                onClick={() => onClickCard(movie.imdbID)}
+                key={movie.imdbID}
+              >
+                <SkeletonImage
+                  src={movie.Poster.replace("300", "1900")}
+                  alt={`imagem do filme ${movie.Title}`}
+                />
+
+                <TitleCard>{movie.Title}</TitleCard>
+                <BtnModal>Ver detalhes</BtnModal>
+              </Container>
             ))}
           </ContainerGrid>
         </MoviesCenter>
+
+        {isModalMovieOpen && (
+          <Modal
+            movieIdClicked={movieByIdClicked}
+            isModalMovieOpen={isModalMovieOpen}
+            handleClickCloseModal={handleClickCloseModal}
+          />
+        )}
       </>
     );
 };

@@ -1,13 +1,13 @@
-import { BrowserRouter } from "react-router-dom";
 import "../View/Style/style.css";
-
-import Routes from "../View/Routes/routes";
+import Home from "../View/Pages/Home/Home";
+import { InputProvider } from "./Context/useInputContext";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <InputProvider>
+      {" "}
+      <Home />{" "}
+    </InputProvider>
   );
 };
 
