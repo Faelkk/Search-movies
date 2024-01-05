@@ -5,18 +5,11 @@ import Card from "../Card/Card";
 import MovieError from "../Error/MovieError";
 import useFetchMoviesBySearch from "../../../../../Hooks/useFetchMovies";
 import { Loading } from "../../../../Components/Loader/Loading";
+import { useInputContext } from "../../../../Context/useInputContext";
 
-interface MoviesContentProps {
-  searchValue: string;
-  setInputDisabled: (value: boolean) => void;
-}
-
-const MoviesContent = ({
-  searchValue,
-  setInputDisabled,
-}: MoviesContentProps) => {
-  const { moviesBySearch, loading, error } =
-    useFetchMoviesBySearch(searchValue);
+const MoviesContent = () => {
+  const { inputValue, setInputDisabled } = useInputContext();
+  const { moviesBySearch, loading, error } = useFetchMoviesBySearch(inputValue);
 
   useEffect(() => {
     if (loading) {
