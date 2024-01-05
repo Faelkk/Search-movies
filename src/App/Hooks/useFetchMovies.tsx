@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { GET } from "../Services";
-import { MovieById, MovieSearch } from "../Types/types";
+import { GET } from "../../Services";
+import { MovieById, MovieSearch } from "../../Types/types";
 
 const useFetchMoviesBySearch = (searchValue: string) => {
   const [moviesBySearch, setMoviesBySearch] = useState<MovieSearch[] | null>(

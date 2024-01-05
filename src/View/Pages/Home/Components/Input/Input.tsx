@@ -1,20 +1,22 @@
 import { ButtonSubmit, Container, Form, InputSearch } from "./style";
 
 import submitIcon from "../../../../../assets/search_FILL0_wght400_GRAD0_opsz24.svg";
-import { useInputContext } from "../../../../Context/useInputContext";
+
+import { useState } from "react";
+import { useInputContext } from "../../../../../App/Context/useInputContext";
 
 const Input = () => {
-  const { inputValue, isInputDisabled, handleSubmit, setInputValue } =
-    useInputContext();
+  const [inputSearchValue, setInputSearchValue] = useState("");
+  const { isInputDisabled, handleSubmit } = useInputContext();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setInputSearchValue(e.target.value);
   };
 
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleSubmit(inputValue);
-    setInputValue("");
+    handleSubmit(inputSearchValue);
+    setInputSearchValue("");
   };
 
   return (
@@ -23,7 +25,7 @@ const Input = () => {
         <InputSearch
           type="text"
           placeholder="Pesquise um filme"
-          value={inputValue}
+          value={inputSearchValue}
           onChange={handleInputChange}
           disabled={isInputDisabled}
         />

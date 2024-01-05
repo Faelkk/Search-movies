@@ -1,5 +1,3 @@
-import { useFetchMoviesById } from "../../../Hooks/useFetchMovies";
-
 import {
   Container,
   ContainerImage,
@@ -21,7 +19,8 @@ import iconAwards from "../../../assets/trophy-svgrepo-com.svg";
 import iconRunTime from "../../../assets/time-svgrepo-com.svg";
 import iconWritter from "../../../assets/writer-write-blogger-work-at-desk-svgrepo-com.svg";
 import iconDirectors from "../../../assets/film-director-profession-director-movie-svgrepo-com.svg";
-import { Loading } from "../../Components/Loader/Loading";
+import { Loading } from "../../../App/Components/Loader/Loading";
+import { useFetchMoviesById } from "../../../App/Hooks/useFetchMovies";
 
 const PageMovie = () => {
   const idMovie = location.pathname.slice(1);

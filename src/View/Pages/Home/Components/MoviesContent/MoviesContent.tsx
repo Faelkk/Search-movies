@@ -3,9 +3,9 @@ import { MoviesCenter, ContainerGrid } from "./style";
 
 import Card from "../Card/Card";
 import MovieError from "../Error/MovieError";
-import useFetchMoviesBySearch from "../../../../../Hooks/useFetchMovies";
-import { Loading } from "../../../../Components/Loader/Loading";
-import { useInputContext } from "../../../../Context/useInputContext";
+import { useInputContext } from "../../../../../App/Context/useInputContext";
+import useFetchMoviesBySearch from "../../../../../App/Hooks/useFetchMovies";
+import { Loading } from "../../../../../App/Components/Loader/Loading";
 
 const MoviesContent = () => {
   const { inputValue, setInputDisabled } = useInputContext();
