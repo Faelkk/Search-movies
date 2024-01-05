@@ -1,4 +1,5 @@
-import Delay from "../App/utils/Delay";
+import Delay from "../utils/Delay";
+
 
 export async function GET(url: string) {
   await Delay(500);

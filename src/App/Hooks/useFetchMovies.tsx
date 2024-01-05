@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { GET } from "../../Services";
-import { MovieById, MovieSearch } from "../../Types/types";
+import { MovieById, MovieSearch } from "../Types/types";
+import { GET } from "../Services";
+
+const urlStart = "https://www.omdbapi.com/";
 
 const useFetchMoviesBySearch = (searchValue: string) => {
   const [moviesBySearch, setMoviesBySearch] = useState<MovieSearch[] | null>(
@@ -11,7 +13,7 @@ const useFetchMoviesBySearch = (searchValue: string) => {
   const [error, setError] = useState(false);
 
   const fetchMovieBySearch = async (searchValue: string) => {
-    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`;
+    const url = `${urlStart}?s=${searchValue}&apikey=4a3b711b`;
     try {
       setLoading(true);
       setError(false);
@@ -43,7 +45,7 @@ export const useFetchMoviesById = (movieId: string) => {
   const [loading, setLoading] = useState(false);
 
   const fetchMovieByid = async (movieId: string) => {
-    const url = `https://www.omdbapi.com/?i=${movieId}&apikey=4a3b711b`;
+    const url = `${urlStart}?i=${movieId}&apikey=4a3b711b`;
 
     try {
       setLoading(true);

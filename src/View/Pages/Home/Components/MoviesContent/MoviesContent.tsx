@@ -28,6 +28,7 @@ const MoviesContent = () => {
   }
 
   setInputDisabled(false);
+
   if (moviesBySearch) {
     return (
       <MoviesCenter>

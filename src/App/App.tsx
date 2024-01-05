@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import "../Style/style.css";
+import "../View/Style/style.css";
 
 import Routes from "../View/Routes/routes";
 
