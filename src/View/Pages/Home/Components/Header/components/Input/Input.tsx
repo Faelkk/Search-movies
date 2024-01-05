@@ -17,6 +17,7 @@ const Input = () => {
       <InputSearch
         type="text"
         placeholder="Pesquise um filme"
+        required
         value={inputSearchValue}
         onChange={handleInputChange}
         disabled={isInputDisabled}

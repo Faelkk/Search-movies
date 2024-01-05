@@ -50,6 +50,7 @@ const MoviesContent = () => {
                 key={movie.imdbID}
               >
                 <SkeletonImage
+                  className="card"
                   src={movie.Poster.replace("300", "1900")}
                   alt={`imagem do filme ${movie.Title}`}
                 />

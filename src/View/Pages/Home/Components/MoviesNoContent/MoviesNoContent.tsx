@@ -1,25 +1,18 @@
-import { useState, useEffect } from "react";
-import { Container, ImgIcon, TitleHome } from "./style";
+import { Container, TitleHome } from "./style";
 
+import SkeletonImage from "../../../../Components/Skeleton/Skeleton";
 import searchIconHome from "../../../../../assets/Web search-pana.svg";
-import Spinner from "../../../../../App/utils/Spinner";
 
 const MoviesNoContent = () => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = searchIconHome;
-    img.onload = () => {
-      setImageLoaded(true);
-    };
-  }, []);
-
   return (
     <Container>
       <TitleHome>Pesquise algum filme</TitleHome>
 
-      {imageLoaded ? <ImgIcon src={searchIconHome} /> : <Spinner />}
+      <SkeletonImage
+        src={searchIconHome}
+        alt="icon search a movie"
+        className="home"
+      />
     </Container>
   );
 };

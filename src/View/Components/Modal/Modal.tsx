@@ -31,14 +31,18 @@ import iconRunTime from "../../../assets/time-svgrepo-com.svg";
 import iconWriter from "../../../assets/writer-write-blogger-work-at-desk-svgrepo-com.svg";
 import iconDirectors from "../../../assets/film-director-profession-director-movie-svgrepo-com.svg";
 import imgClose from "../../../assets/close_FILL0_wght400_GRAD0_opsz24.svg";
+import Loader from "../Helpers/Loading/Loader";
 
 const Modal = ({
   movieIdClicked,
   isModalMovieOpen,
   handleClickCloseModal,
 }: ModalProps) => {
-  const { movieById } = useFetchMoviesById(movieIdClicked);
+  const { movieById, loading } = useFetchMoviesById(movieIdClicked);
 
+  console.log(movieById);
+
+  if (loading) return <Loader loading={loading} />;
   if (movieIdClicked && movieById)
     return (
       <>

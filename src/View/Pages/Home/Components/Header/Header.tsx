@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Container>
       <HeaderCenter>
-        <TitlePage>Movies Tracker</TitlePage>
+        <TitlePage>WatchWhiz</TitlePage>
         <Input />
       </HeaderCenter>
     </Container>
