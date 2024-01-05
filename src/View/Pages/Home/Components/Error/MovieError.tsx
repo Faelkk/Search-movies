@@ -14,10 +14,10 @@ const MovieError = () => {
   return (
     <Container>
       <ContainerTitle>
-        <TitleError>Não encontramos resultado para</TitleError>
+        <TitleError>We don't find any search results for</TitleError>
         <NameNotFound>{inputValue}</NameNotFound>
       </ContainerTitle>
-      <TitleError>Tente novamente</TitleError>
+      <TitleError>Try again</TitleError>
       <ImgError src={iconError} alt="Imagem filme não encontrado" />
     </Container>
   );

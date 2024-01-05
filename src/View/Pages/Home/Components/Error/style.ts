@@ -11,14 +11,16 @@ export const TitleError = styled.h2`
   font-size:1.5rem;
 
   @media(max-width:600px) {
-  font-size:1.3rem
+  font-size:1.3rem;
+
+  @media(max-width:375px) {
+    font-size:1rem;
+  }
 }
   
 `;
 export const ImgError = styled.img`
   width: 600px;
-
- 
 `;
 
 export const NameNotFound  = styled.h2`
@@ -28,16 +30,15 @@ overflow: hidden;
   text-overflow: ellipsis;
   max-width: 400px; 
   white-space: nowrap; 
- 
-
 
 @media(max-width:800px) {
   font-size:1.3rem;
   max-width: 300px; 
   
-}
-
-  
+}   
+@media(max-width:375px) {
+    font-size:1rem;
+  }
 
 `
 export const ContainerTitle = styled.div`

@@ -2,6 +2,25 @@
 
 Bem-vindo ao WatchWhiz, a sua plataforma dedicada a aprimorar a busca pelos seus filmes e séries favoritos! Este projeto representa uma etapa marcante da minha jornada inicial no estudo desta área que eu me apaixonei. Após um tempo dedicado ao aprendizado, decidi refatorar o projeto, mas manter a essência dele, que marca o início da minha jornada nessa área.
 
+## Layout Web
+
+<img src="public/home.png">
+<img src="public/not found movies.png">
+<img src="public/cards movies.png">
+<img src="public/modal movie.png">
+
+<img style="width:390px;" src="public/home mobile.png">
+
+<img style="width:390px;" src="public/not found movies mobile.png">
+
+<img style="width:390px;" src="public/cards movies mobile.png">
+
+<img style="width:390px;" src="public/modal movies mobile.png">
+
+<img style="width:390px;" src="public/modal movies mobile 2.png">
+
+## Layout Mobile
+
 ## 🛠️ Tecnologias
 
 💻 **Front-end**
