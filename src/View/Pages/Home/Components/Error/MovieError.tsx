@@ -1,11 +1,23 @@
-import { TitleError, ImgError, Container } from "./style";
+import {
+  TitleError,
+  ImgError,
+  Container,
+  NameNotFound,
+  ContainerTitle,
+} from "./style";
 
 import iconError from "../../../../../assets/404 Error-rafiki.svg";
+import { useInputContext } from "../../../../../App/Context/useInputContext";
 
 const MovieError = () => {
+  const { inputValue } = useInputContext();
   return (
     <Container>
-      <TitleError>Filme não encontrado tente novamente</TitleError>
+      <ContainerTitle>
+        <TitleError>Não encontramos resultado para</TitleError>
+        <NameNotFound>{inputValue}</NameNotFound>
+      </ContainerTitle>
+      <TitleError>Tente novamente</TitleError>
       <ImgError src={iconError} alt="Imagem filme não encontrado" />
     </Container>
   );

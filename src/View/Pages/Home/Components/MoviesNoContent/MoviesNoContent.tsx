@@ -18,6 +18,7 @@ const MoviesNoContent = () => {
   return (
     <Container>
       <TitleHome>Pesquise algum filme</TitleHome>
+
       {imageLoaded ? <ImgIcon src={searchIconHome} /> : <Spinner />}
     </Container>
   );

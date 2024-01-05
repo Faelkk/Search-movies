@@ -7,9 +7,48 @@ export const Container = styled.div`
   margin-top: 2rem;
 `;
 export const TitleError = styled.h2`
-  font-size: 1.5rem;
-  color: #396ebd;
+  color: #000;
+  font-size:1.5rem;
+
+  @media(max-width:600px) {
+  font-size:1.3rem
+}
+  
 `;
 export const ImgError = styled.img`
-  width: 300px;
+  width: 600px;
+
+ 
 `;
+
+export const NameNotFound  = styled.h2`
+color:#396ebd;
+font-size:1.5rem;
+overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px; 
+  white-space: nowrap; 
+ 
+
+
+@media(max-width:800px) {
+  font-size:1.3rem;
+  max-width: 300px; 
+  
+}
+
+  
+
+`
+export const ContainerTitle = styled.div`
+display:flex; 
+gap: 0.5rem;
+
+@media(max-width:850px) {
+  flex-direction:column;
+  gap:0;
+  align-items:center;
+}
+
+
+`

@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 import MovieError from "../Error/MovieError";
 import { useInputContext } from "../../../../../App/Context/useInputContext";
 import useFetchMoviesBySearch from "../../../../../App/Hooks/useFetchMovies";
-import { Loading } from "../../../../../App/Components/Loader/Loading";
+import Loader from "../../../../../App/Components/Helpers/Loading/Loader";
 
 const MoviesContent = () => {
   const { inputValue, setInputDisabled } = useInputContext();
@@ -19,27 +19,24 @@ const MoviesContent = () => {
     }
   }, [loading, setInputDisabled]);
 
-  if (loading) {
-    setInputDisabled(true);
-    return <Loading />;
-  }
-  if (error) {
-    return <MovieError />;
-  }
-
   setInputDisabled(false);
 
-  if (moviesBySearch) {
+  if (loading) return <Loader loading={loading} />;
+
+  if (error) return <MovieError />;
+
+  if (moviesBySearch)
     return (
-      <MoviesCenter>
-        <ContainerGrid>
-          {moviesBySearch.map((movie) => (
-            <Card key={movie.imdbID} movie={movie} />
-          ))}
-        </ContainerGrid>
-      </MoviesCenter>
+      <>
+        <MoviesCenter>
+          <ContainerGrid>
+            {moviesBySearch.map((movie) => (
+              <Card key={movie.imdbID} movie={movie} />
+            ))}
+          </ContainerGrid>
+        </MoviesCenter>
+      </>
     );
-  }
 };
 
 export default MoviesContent;
