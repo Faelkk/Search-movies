@@ -6,9 +6,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex: 1;
-  margin-top: 3em;
+  margin-top: 3rem;
 `;
 export const TitleHome = styled.h2``;
 export const ImgIcon = styled.img`
-  width: 300px;
+  width: 600px;
 `;

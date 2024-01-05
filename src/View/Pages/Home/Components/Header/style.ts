@@ -17,6 +17,9 @@ width:30%;
 @media (max-width:900px) {
   width:100%;
 }
+@media (max-width:250px) {
+  width:100
+}
 `
 
 export const TitlePage = styled.h1`
