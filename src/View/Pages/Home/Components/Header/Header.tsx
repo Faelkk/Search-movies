@@ -1,11 +1,13 @@
-import Input from "../Input/Input";
-import { Container, TitlePage } from "./style";
+import Input from "./components/Input/Input";
+import { Container, HeaderCenter, TitlePage } from "./style";
 
 const Header = () => {
   return (
     <Container>
-      <TitlePage>Movies Tracker</TitlePage>
-      <Input />;
+      <HeaderCenter>
+        <TitlePage>Movies Tracker</TitlePage>
+        <Input />
+      </HeaderCenter>
     </Container>
   );
 };
